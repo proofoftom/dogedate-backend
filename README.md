@@ -11,15 +11,15 @@ DogeDate Frontend URL: https://github.com/tommycox/dogedate-frontend
 git clone git@github.com:tommycox/dogedate-backend.git
 git clone git@github.com:tommycox/dogedate-frontend.git
 
+# Copy seed images from frontend into public files
+cp -R dogedate-frontend/src/statics/images dogedate-backend/storage/app/public/
+
 # Setup Laravel
 cd dogedate-backend
 chmod -R a+rwX bootstrap/cache storage
 cp .env.example .env
 
-# Copy the seed images from the frontend into public files.
-cp -R ../dogedate-frontend/src/statics/images storage/app/public/
-
-# With Docker Compose (php-fpm + nginx + MySQL)
+# Run with Docker Compose (php-fpm + nginx + MySQL)
 docker-compose up -d
 docker-compose run composer install
 docker-compose run php php artisan key:generate
